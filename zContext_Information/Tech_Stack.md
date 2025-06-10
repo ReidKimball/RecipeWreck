@@ -1,6 +1,6 @@
-# Creator Spaces App - Technology Stack for App
+# RecipeWreck App - Technology Stack for App
 
-This document outlines the complete technology stack used in the Creator Space App, including all dependencies and their versions as specified in `package.json`.
+This document outlines the complete technology stack used in the RecipeWreck App, including all dependencies and their versions as specified in `package.json`.
 
 ## Core Technologies
 

@@ -2,7 +2,7 @@
 trigger: manual
 ---
 
-# Creator Space App - Architecture Documentation
+# Architecture Documentation
 
 We have now concluded our design and system planning discussion for the feature. This document will serve as the blueprint for subsequent development, ensuring we build a scalable, secure, performant, and maintainable solution, adhering to best practices like modularity, testability, and reusability.
 

@@ -25,9 +25,9 @@ Mode Description:
   - The architecture document should be placed in its own directory under `/docs/`
 - In the GitHub issue, add a section called "Architecture" with a link to the document using this format:
   ```markdown
-  ## Architecture
-  
-  See the detailed architecture document: [Architecture Plan: Feature Name](https://github.com/ReidKimball/creator-space/blob/master/docs/feature-name/architecture_for_feature_name.md)
+
+  ### Architecture
+  See the detailed architecture document: [Architecture Plan: Feature Name](https://github.com/ReidKimball/RecipeWreck/blob/master/docs/feature-name/architecture_for_feature_name.md)
   ```
   - Always use the full GitHub URL (not relative paths) for reliability
   - Ensure the branch name in the URL matches your current branch (typically `main` or `master`)
@@ -52,7 +52,7 @@ Mode Description:
 - At the end of discussing the feature, I'll ask you to create a GitHub issue that describes the feature at a high level in one to two paragraphs.
 
 ## Mode Name: Development
-Enabled: true
+Enabled: false
 Mode Description: 
 - Do write code, we are in development mode.
 - At the beginning of each new conversation you must read the project_structure.md file at the root of the project.

@@ -1,101 +1,101 @@
-# Target User Personas
+# RecipeWreck User Personas
 
-## 1. The Content Creator
-**Name:** Alex Rivera  
-**Role:** Full-time Content Creator & Social Media Manager  
-**Age:** 32  
+## 1. The Viral Food Content Creator
+**Name:** Jamie Lopez  
+**Role:** Food Content Creator & Social Media Influencer  
+**Age:** 26  
+**Location:** Los Angeles, CA  
+
+**Background:**  
+Jamie creates outrageous food content for TikTok and Instagram, specializing in absurd food combinations and challenges. They're always looking for the next viral food trend.
+
+**Goals:**
+- Generate unique, shareable food content
+- Grow their social media following
+- Engage with their audience through humor
+- Stay ahead of food trends
+
+**Frustrations:**
+- Running out of creative food ideas
+- Content not getting enough engagement
+- Time-consuming content creation process
+- Difficulty standing out in a crowded space
+
+---
+
+## 2. The Meme Chef
+**Name:** Alex "Chef Meme" Thompson  
+**Role:** Internet Chef & Meme Creator  
+**Age:** 29  
 **Location:** Austin, TX  
 
 **Background:**  
-Alex manages multiple social media accounts for clients across different industries. They're always looking for ways to create engaging content more efficiently.
+Alex combines culinary skills with internet humor to create viral food memes and absurd recipe videos. They're known for their dark humor and outrageous food experiments.
 
 **Goals:**
-- Streamline content creation across platforms
-- Maintain consistent brand voice for different clients
-- Quickly generate and refine content ideas
-- Manage multiple content calendars
+- Create hilarious food content that goes viral
+- Build a community around absurdist food humor
+- Collaborate with other creators
+- Monetize their content
 
 **Frustrations:**
-- Context switching between different AI tools
-- Losing track of different brand voices
-- Inconsistent AI outputs
-- Time spent on repetitive content tasks
+- Coming up with fresh, original ideas
+- Balancing humor with actual cooking content
+- Dealing with platform algorithms
+- Managing creative burnout
 
 ---
 
-## 2. The Startup Founder
-**Name:** Jordan Chen  
-**Role:** Tech Startup Founder  
-**Age:** 28  
-**Location:** San Francisco, CA  
+## 3. The Foodie Prankster
+**Name:** Taylor Chen  
+**Role:** Content Creator & Prankster  
+**Age:** 24  
+**Location:** New York, NY  
 
 **Background:**  
-Jordan is bootstrapping a SaaS product and wears multiple hats, from product development to marketing.
+Taylor creates reaction videos and pranks featuring outrageous food combinations. They love pushing culinary boundaries for comedic effect.
 
 **Goals:**
-- Get specialized assistance for different business functions
-- Maintain organized documentation
-- Quickly prototype ideas
-- Manage investor communications
+- Create shocking food content
+- Entertain their audience
+- Collaborate with other creators
+- Grow their online presence
 
 **Frustrations:**
-- No time to be an expert in everything
-- Disjointed tools for different needs
-- Forgetting important context in conversations
-- Lack of specialized AI assistance
+- Finding the right balance between funny and gross
+- Dealing with negative comments
+- Coming up with new prank ideas
+- Managing content creation costs
 
 ---
 
-## 3. The Marketing Professional
-**Name:** Taylor Smith  
-**Role:** Digital Marketing Manager  
-**Age:** 35  
+## 4. The Culinary Student
+**Name:** Samira "Sam" Johnson  
+**Role:** Culinary Student & Part-Time Content Creator  
+**Age:** 21  
 **Location:** Chicago, IL  
 
 **Background:**  
-Taylor leads a small marketing team and needs to produce high-quality content while managing multiple campaigns.
+Samira is studying to be a chef but loves creating funny food content in their spare time. They use their culinary knowledge to make intentionally bad recipes for laughs.
 
 **Goals:**
-- Create consistent marketing materials
-- Develop targeted messaging for different audiences
-- Analyze campaign performance
-- Train junior team members
+- Build an online presence
+- Showcase culinary skills in a fun way
+- Connect with other food creators
+- Potentially turn content creation into a side business
 
 **Frustrations:**
-- Inconsistent brand voice across channels
-- Time spent on repetitive tasks
-- Difficulty tracking campaign iterations
-- Need for specialized marketing expertise
+- Limited time between school and content creation
+- Balancing professional aspirations with comedic content
+- Finding their unique voice
+- Growing their audience
 
 ---
 
-## 4. The Independent Developer
-**Name:** Sam Patel  
-**Role:** Freelance Full-Stack Developer  
-**Age:** 30  
-**Location:** Remote (Digital Nomad)  
-
-**Background:**  
-Sam works on multiple client projects simultaneously and needs to switch contexts frequently.
-
-**Goals:**
-- Manage multiple client projects efficiently
-- Get specialized coding assistance
-- Document technical decisions
-- Communicate technical concepts to non-technical clients
-
-**Frustrations:**
-- Context switching between projects
-- Explaining technical concepts simply
-- Keeping documentation organized
-- Finding relevant code snippets
-
----
-
-## 5. The Educator/Coach
-**Name:** Dr. Maria Gonzalez  
-**Role:** Online Course Creator & Coach  
-**Age:** 42  
+## 5. The Food Meme Enthusiast
+**Name:** Chris "MemeLord" Rodriguez  
+**Role:** Food Meme Curator & Community Manager  
+**Age:** 27  
 **Location:** Miami, FL  
 
 **Background:**  

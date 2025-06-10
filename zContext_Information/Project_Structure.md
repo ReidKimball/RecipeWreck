@@ -1,11 +1,11 @@
-# Creator Space App - Project Structure
+# RecipeWreck App - Project Structure
 
-This document provides an overview of the project structure for the Creator Space App, a Next.js application with a focus on server-side rendering and API routes.
+This document provides an overview of the project structure for the RecipeWreck App, a Next.js application with a focus on server-side rendering and API routes.
 
 ## Root Directory
 
 ```
-Creator Space/
+RecipeWreck/
 ├── .next/                  # Next.js build output
 ├── node_modules/           # Project dependencies
 ├── public/                 # Static assets (images, fonts, etc.)
@@ -34,7 +34,7 @@ Creator Space/
 - `layout.tsx` - Root layout component
 - `page.tsx` - Home page component
 - `api/` - API route handlers
-  - `projects/` - Project-related API endpoints
+  - `recipes/` - Recipe-related API endpoints
   - `chat/` - Chat-related API endpoints
   - `prompts/` - System prompt API endpoints
 
@@ -42,9 +42,9 @@ Creator Space/
 - `chat/`
   - `ChatMessage.tsx` - Component for displaying chat messages
   - `ChatInput.tsx` - Chat input component
-- `project/`
-  - `ProjectForm.tsx` - Form for creating/editing projects
-  - `ProjectCard.tsx` - Card component for project information
+- `recipe/`
+  - `RecipeForm.tsx` - Form for creating/editing recipes
+  - `RecipeCard.tsx` - Card component for recipe information
 - `prompts/`
   - `SystemPromptForm.tsx` - Form for managing system prompts
   - `PromptSelector.tsx` - Component for selecting prompts
@@ -56,7 +56,7 @@ Creator Space/
 
 ### Models (`/src/models`)
 - `User.ts` - User model/schema
-- `Project.ts` - Project model/schema
+- `Recipe.ts` - Recipe model/schema
 - `ChatSession.ts` - Chat session model/schema
 - `Prompt.ts` - System prompt model/schema
 
@@ -70,7 +70,7 @@ Creator Space/
 
 ### Types (`/src/types`)
 - `index.ts` - Main type exports
-- `project.ts` - Project-related types
+- `recipe.ts` - Recipe-related types
 - `chat.ts` - Chat-related types
 - `prompt.ts` - Prompt-related types
 
