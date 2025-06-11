@@ -45,7 +45,7 @@ export default function PromptInput({ onResult }: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full flex flex-col sm:flex-row gap-4"
+      className="w-full flex flex-col sm:flex-row gap-4 text-white"
     >
       <input
         type="text"
