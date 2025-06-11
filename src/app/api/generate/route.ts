@@ -16,13 +16,17 @@ const parseRecipe = (raw: string) => {
   const ingredients: string[] = [];
   const steps: string[] = [];
 
+  // Split the response into lines, keep non-empty ones
   const lines = raw.split("\n").map((l) => l.trim()).filter(Boolean);
   let mode: "none" | "ingredients" | "steps" = "none";
 
+  // Iterate through each line, stripping common Markdown decorations first so
+  // that headings like "**Title:**" are recognised the same as "Title:"
   for (const line of lines) {
-    const lower = line.toLowerCase();
+    const clean = line.replace(/[*_`]/g, "").trim();
+    const lower = clean.toLowerCase();
     if (lower.startsWith("title:")) {
-      title = line.slice(6).trim();
+      title = clean.slice(6).trim();
       mode = "none";
       continue;
     }
@@ -36,9 +40,9 @@ const parseRecipe = (raw: string) => {
     }
 
     if (mode === "ingredients") {
-      ingredients.push(line.replace(/^[-*]\s*/, ""));
+      ingredients.push(clean.replace(/^[-*]\s*/, ""));
     } else if (mode === "steps") {
-      steps.push(line.replace(/^\d+\.\s*/, ""));
+      steps.push(clean.replace(/^\d+\.\s*/, ""));
     }
   }
 
@@ -58,17 +62,19 @@ export async function POST(req: NextRequest) {
 
     const ai = new GoogleGenAI({ apiKey: apiKey });
     const textModelName = process.env.GENAI_TEXT_MODEL || "gemini-1.5-flash-latest";
-    const textGenerationConfig = { responseMimeType: "text/plain" };
+    // We could set responseMimeType here but will inline below. Removed unused var to avoid lint.
 
     const textPrompt = `Generate an OUTRAGEOUSLY unhealthy recipe in the following format:\n\nTitle: <creative title>\n\nIngredients:\n- <ingredient 1>\n- <ingredient 2>\n\nSteps:\n1. <step 1>\n2. <step 2>\n\nPrompt subject: ${prompt}`;
     console.log("Text prompt:", textPrompt);
     const requestContents = [{ role: 'user', parts: [{ text: textPrompt }] }];
 
-    // Using ai.models.generateContent directly, similar to onboarding/chat/route.ts pattern
+    // Disable thinking by setting thinkingBudget: 0 (allowed for 2.5 Flash)
     const textRes = await ai.models.generateContent({
       model: textModelName,
       contents: requestContents,
-      // generationConfig removed as per lint error df9772b8-09a9-4077-a1ef-224d63ac415e
+      config: {
+        thinkingConfig: { thinkingBudget: 0 },
+      },
     });
     
     // Accessing text as a property, or via candidates as a fallback
@@ -78,13 +84,18 @@ export async function POST(req: NextRequest) {
 
     // Image generation
     const imageModelName = process.env.GENAI_IMAGE_MODEL || "imagen-3.0-generate-002"; // Changed from imagen-3 due to 404 error on v1beta
-    const imageGenerationConfig = { responseMimeType: "image/png" }; // Assuming similar config structure
+    // Request a 16×9 aspect ratio so the generated image fits our card (see docs for Imagen 3)
+    const imageGenerationConfig = {
+      responseMimeType: "image/png",
+      generationConfig: {
+        aspectRatio: "16:9",
+      },
+    }; // cast as any until SDK types include aspectRatio
 
-    // Using ai.models.generateImages (plural) and removing generationConfig
     const imgRes = await ai.models.generateImages({
-      model: imageModelName, 
-      prompt: `High resolution food photography of ${title}`,
-      // generationConfig removed, assuming similar parameter structure to generateContent
+      model: imageModelName,
+      prompt: `High resolution food photography of ${title}${ingredients.length ? ` featuring ${ingredients.slice(0, 5).join(', ')}` : ''}`,
+      ...imageGenerationConfig,
     });
     const imageBase64 = imgRes.generatedImages?.[0]?.image?.imageBytes ?? ""; // Based on official SDK example for Imagen 3
 

@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/zRecipe_Images
+src/app/api/generate/route copy 2.ts
+src/app/api/generate/route copy.ts
