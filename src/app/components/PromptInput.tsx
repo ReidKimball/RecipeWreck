@@ -52,7 +52,7 @@ export default function PromptInput({ onResult }: Props) {
         placeholder="e.g., Deep-fried chocolate salad"
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
-        className="flex-1 px-4 py-2 border rounded-md text-black"
+        className="flex-1 px-4 py-2 border rounded-md text-white"
       />
       <button
         type="submit"

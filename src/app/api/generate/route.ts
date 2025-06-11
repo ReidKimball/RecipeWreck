@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
     const imageBase64 = imgRes.generatedImages?.[0]?.image?.imageBytes ?? ""; // Based on official SDK example for Imagen 3
 
     const jsonData = { title, ingredients, steps, imageBase64 };
-    console.log('Final JSON Data to be sent:', JSON.stringify(jsonData, null, 2)); // Log final data
+    console.log('Final JSON Data to be sent (image data omitted for brevity):', JSON.stringify({ ...jsonData, imageBase64: jsonData.imageBase64 ? '[IMAGE_DATA_PRESENT]' : '[NO_IMAGE_DATA]' }, null, 2));
     return NextResponse.json(jsonData);
   } catch (err: any) {
     console.error("/api/generate error", err);
