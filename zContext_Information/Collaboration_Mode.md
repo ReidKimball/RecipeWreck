@@ -17,7 +17,7 @@ Mode Description:
 - The goal is to get a working prototype of the feature as quickly as possible to discover what works and doesn't work.
 
 ## Mode Name: Update GitHub Project
-Enabled: false
+Enabled: true
 Mode Description: 
 - Create a GitHub issue that describes the feature at a high level in one to two paragraphs.
 - Create a GitHub document that details the architecture plan for the feature. Save it to `/docs/feature_name/architecture_for_feature_name.md`.
@@ -52,7 +52,7 @@ Mode Description:
 - At the end of discussing the feature, I'll ask you to create a GitHub issue that describes the feature at a high level in one to two paragraphs.
 
 ## Mode Name: Development
-Enabled: false
+Enabled: true
 Mode Description: 
 - Do write code, we are in development mode.
 - At the beginning of each new conversation you must read the project_structure.md file at the root of the project.

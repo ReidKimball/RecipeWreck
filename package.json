@@ -19,6 +19,7 @@
     "dayjs": "^1.11.13",
     "dotenv": "^16.5.0",
     "firebase": "^11.9.0",
+    "framer-motion": "^12.17.3",
     "lucide-react": "^0.513.0",
     "mongodb": "^6.17.0",
     "mongoose": "^8.15.1",
