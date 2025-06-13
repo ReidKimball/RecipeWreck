@@ -24,10 +24,10 @@ const mockTestimonials: TestimonialCardProps[] = [
     quote: "My smoke alarm now sings opera. Thanks, RecipeWreck!",
     author: "@pyro_gourmet"
   },
-  {
-    quote: "Used this for a first date. Pretty sure I'm getting a restraining order for dessert.",
-    author: "@foreveralonefoodie"
-  }
+  // {
+  //   quote: "Used this for a first date. Pretty sure I'm getting a restraining order for dessert.",
+  //   author: "@foreveralonefoodie"
+  // }
 ];
 
 /**
