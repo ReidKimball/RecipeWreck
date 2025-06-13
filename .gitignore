@@ -42,3 +42,4 @@ next-env.d.ts
 /zRecipe_Images
 src/app/api/generate/route copy 2.ts
 src/app/api/generate/route copy.ts
+src/app/landing/(variations)/gemini-2.5pro/page copy.tsx

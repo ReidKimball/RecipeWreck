@@ -1,15 +1,35 @@
-import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenAI } from "@google/genai";
-import { z } from "zod";
+/**
+ * @file src/app/api/generate/route.ts
+ * @description API Route Handler for generating recipes using Google GenAI. It processes user prompts to create recipe text and an accompanying image.
+ * @requires next/server For NextRequest and NextResponse objects to handle API requests and responses.
+ * @requires @google/genai For interacting with Google's Generative AI models (text and image).
+ * @requires zod For validating the request body schema.
+ * @author Cascade
+ * @date 2025-06-12
+ */
+
+import { NextRequest, NextResponse } from "next/server"; // Next.js types for API route handling.
+import { GoogleGenAI } from "@google/genai"; // Google Generative AI SDK.
+import { z } from "zod"; // Library for schema validation.
 
 // ---------- helpers ----------
+/**
+ * @constant BodySchema
+ * @description Zod schema for validating the request body for the recipe generation endpoint.
+ * Requires a 'prompt' field which must be a string between 1 and 500 characters.
+ * @type {z.ZodObject<{ prompt: z.ZodString }>}
+ */
 const BodySchema = z.object({
   prompt: z.string().min(1).max(500),
 });
 
 /**
- * Quick-and-dirty parser for the LLM output following the prompt template.
+ * @function parseRecipe
+ * @description Parses the raw text output from the language model to extract the recipe's title, ingredients, and steps.
+ * It handles variations in formatting, such as Markdown, and organizes the content into a structured object.
  * Expects the text block to contain "Title:", "Ingredients:", and "Steps:" sections.
+ * @param {string} raw - The raw string output from the language model.
+ * @returns {{ title: string, ingredients: string[], steps: string[] }} An object containing the parsed recipe details.
  */
 const parseRecipe = (raw: string) => {
   let title = "Untitled Wreck";
@@ -50,6 +70,20 @@ const parseRecipe = (raw: string) => {
 };
 
 // ---------- route handler ----------
+/**
+ * @async
+ * @function POST
+ * @description API route handler for POST requests to `/api/generate`. It takes a user prompt from the request body,
+ * uses Google GenAI to generate recipe text and an image, parses the recipe text, and returns the structured recipe data.
+ * @route POST /api/generate
+ * @param {NextRequest} req - The incoming Next.js request object. Expected to have a JSON body matching `BodySchema` (i.e., { prompt: string }).
+ * @returns {Promise<NextResponse>} A promise resolving to a NextResponse object.
+ *   - On success (200): Returns JSON data `{ title, ingredients, steps, imageBase64 }`.
+ *   - On validation error (implicitly 400 via Zod, caught as 500): Returns JSON `{ error: "Generation failed" }`.
+ *   - On missing API key (500): Returns JSON `{ error: "Missing API key" }`.
+ *   - On other server errors (500): Returns JSON `{ error: "Generation failed" }`.
+ * @throws Catches errors from Zod validation, GenAI API calls, or internal processing, logs them, and returns a 500 status with an error message.
+ */
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
