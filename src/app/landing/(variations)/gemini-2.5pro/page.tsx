@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head'; // For older Next.js versions, or use Metadata API for App Router
 import TestimonialsSection from '@/app/components/TestimonialsSection'; // Added import
+import posthog from 'posthog-js'; // Added PostHog import
 
 // Mockup Recipe Data - Replace with actual pre-generated recipe images and details
 // Helper function to generate stars
@@ -93,21 +94,17 @@ export default function LandingPage_o3() {
 
   const handleWaitlistSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Integrate PostHog event for waitlist signup attempt
-    // console.log('PostHog: Waitlist signup attempt', waitlistEmail);
+    posthog.capture('waitlist_joined', { email: waitlistEmail });
     if (waitlistEmail && waitlistEmail.includes('@')) { // Basic validation
       setWaitlistSubmitted(true);
-      // TODO: Integrate PostHog event for successful waitlist signup
-      // console.log('PostHog: Waitlist signup success', waitlistEmail);
     } else {
       alert('Please enter a valid email, you culinary daredevil!');
     }
   };
 
   const handlePreorderClick = () => {
-    // TODO: Integrate PostHog event for pre-order click
-    // console.log('PostHog: Pre-order button clicked');
-    alert('Pre-order system coming soon! Your $50 will be eagerly (and absurdly) awaited.');
+    alert('Pre-order functionality coming soon! You are a true visionary/masochist.');
+    posthog.capture('preorder_cta_clicked');
   };
 
   return (
@@ -124,7 +121,12 @@ export default function LandingPage_o3() {
           <div className="container mx-auto px-6 flex justify-between items-center">
             <h1 className="text-4xl font-bold text-purple-400">RecipeWreck</h1>
             <button 
-              onClick={() => document.getElementById('waitlist-section')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => {
+                document.getElementById('waitlist-section')?.scrollIntoView({ behavior: 'smooth' });
+                // Note: This is the top 'Join the Mayhem' button for scrolling.
+                // If you want to track clicks on THIS specific button, add a posthog.capture here.
+                // For now, we are focusing on the pre-order and waitlist form submission buttons.
+              }}
               className="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-lg font-semibold transition-colors"
             >
               Join the Mayhem
@@ -234,7 +236,6 @@ export default function LandingPage_o3() {
                 Thanks! Your arteries quiver with anticipation. We'll be in touch (if the AI doesn't achieve sentience first).
               </p>
             )}
-            <p className="mt-4 text-sm text-gray-500">{`// TODO: Integrate PostHog event for waitlist signup`}</p>
           </div>
         </section>
 
@@ -250,9 +251,8 @@ export default function LandingPage_o3() {
               onClick={handlePreorderClick}
               className="px-12 py-5 bg-yellow-500 hover:bg-yellow-600 text-gray-900 rounded-lg text-2xl font-bold transition-colors shadow-2xl transform hover:scale-105"
             >
-              Pre-Order Your Culinary Demise ($50)
+              Fund the Absurdity!
             </button>
-            <p className="mt-4 text-sm text-gray-500">{`// TODO: Integrate PostHog event for pre-order click & Stripe Checkout`}</p>
           </div>
         </section>
 
