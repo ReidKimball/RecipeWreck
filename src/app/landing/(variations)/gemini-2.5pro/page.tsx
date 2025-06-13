@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head'; // For older Next.js versions, or use Metadata API for App Router
+import TestimonialsSection from '@/app/components/TestimonialsSection'; // Added import
 
 // Mockup Recipe Data - Replace with actual pre-generated recipe images and details
 // Helper function to generate stars
@@ -75,6 +76,22 @@ const mockRecipes = [
 export default function LandingPage_o3() {
   const [waitlistEmail, setWaitlistEmail] = useState('');
   const [waitlistSubmitted, setWaitlistSubmitted] = useState(false);
+  const [submitButtonText, setSubmitButtonText] = useState('');
+
+  const buttonTextOptions = [
+    "Join the Mayhem",
+    "Embrace the Indigestion",
+    "I Have No Regrets (Yet)",
+    "Sign Me Up for Questionable Choices",
+    "What's the Worst That Could Happen?",
+    "Unleash the Culinary Chaos",
+    "Click Here for a Bad Time (The Good Kind)"
+  ];
+
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * buttonTextOptions.length);
+    setSubmitButtonText(buttonTextOptions[randomIndex]);
+  }, []); // Empty dependency array ensures this runs only on mount
 
   const handleWaitlistSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -187,10 +204,13 @@ export default function LandingPage_o3() {
           </div>
         </section>
 
+        <TestimonialsSection />
+
         {/* Call to Action - Waitlist Section */}
         <section id="waitlist-section" className="w-full py-16 md:py-24 bg-gray-800">
           <div className="container mx-auto px-6 text-center">
-            <h3 className="text-4xl font-bold mb-4 text-purple-300">Be the First to Wreck Your Diet.</h3>
+            {/* was be the first to wreck your diet */}
+            <h3 className="text-4xl font-bold mb-4 text-purple-300">Get on the List: Our 'First Users' Are Already Questioning Their Life Choices.</h3>
             <p className="text-lg text-gray-400 mb-8 max-w-xl mx-auto">
               Sign up for exclusive launch updates, and maybe a coupon for a defibrillator. (Coupon not guaranteed. Consult your sense of humor.)
             </p>
@@ -208,7 +228,7 @@ export default function LandingPage_o3() {
                   type="submit"
                   className="px-8 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg text-lg font-semibold transition-colors"
                 >
-                  Join Waitlist
+                  {submitButtonText}
                 </button>
               </form>
             ) : (
