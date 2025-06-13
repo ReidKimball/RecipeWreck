@@ -22,14 +22,12 @@ const mockRecipes = [
     ratingDescription: "Rated 'Absolutely Horrifying'",
     reactions: "10.2k",
     shares: "5.4k",
-    ingredientsText: `1 extra-large, freshly made funnel cake (at least 12 inches in diameter, cooked pliable, not crispy – this is your "tortilla," a greasy canvas for the masterpiece of poor decisions to come)\n
-                      1 gallon peanut oil (for frying and re-frying, because once is never enough when you're actively trying to clog every artery)\n
+    ingredientsText: `1 extra-large, freshly made funnel cake (this is your "tortilla," a greasy canvas for the masterpiece of poor decisions to come)\n
+                      1 gallon peanut oil\n
                       1 full slice of New York-style cheesecake, frozen solid (the dense, icy core of this caloric black hole)\n
                       3 scoops of chocolate fudge brownie ice cream (to ensure immediate brain freeze and a diabetic coma chaser)\n
-                      1 cup of bacon bits, candied in maple syrup (because savory and sweet should always engage in a fight to the death on your palate)\n
-                      1/2 cup Ghirardelli caramel sauce (a touch of "luxury" before the inevitable food coma)\n
+                      1 cup of bacon bits, candied in maple syrup\n
                       1/2 cup Hershey's chocolate shell sauce (the delicious, quick-hardening cement holding this monstrosity together)\n
-                      1 full-size Snickers bar, roughly chopped (because what's one more candy bar when you've already abandoned all hope?)\n
                       1 sleeve of Oreos, crushed (for that delightful, gritty texture that says "I've given up on my teeth")\n
                       1 can of extra-creamy whipped cream (from a can, naturally, for that authentic taste of aerosol and regret)\n
                       A stick of butter (the unsung hero, greasing the wheels of this entire digestive disaster)`,
@@ -215,7 +213,7 @@ export default function LandingPage_o3() {
               Sign up for exclusive launch updates, and maybe a coupon for a defibrillator. (Coupon not guaranteed. Consult your sense of humor.)
             </p>
             {!waitlistSubmitted ? (
-              <form onSubmit={handleWaitlistSubmit} className="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
+              <form onSubmit={handleWaitlistSubmit} className="max-w-md mx-auto flex flex-col gap-4">
                 <input
                   type="email"
                   value={waitlistEmail}
