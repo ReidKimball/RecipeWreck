@@ -185,7 +185,8 @@ export default function LandingPage() {
    */
   const handlePreorderClick = () => {
     posthog.capture('preorder_cta_clicked');
-    window.location.href = 'https://buy.stripe.com/test_dRm6oH9Uxe4Cc0R004cs802';
+    // window.location.href = 'https://buy.stripe.com/test_dRm6oH9Uxe4Cc0R004cs802'; // Test link
+    window.location.href = 'https://buy.stripe.com/9B6fZh4AdbWu6GxdQUcs807'; // Live link
   };
 
   return (
@@ -233,13 +234,20 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* What is RecipeWreck? Section */}
-        <section className="w-full py-16 md:py-24 bg-gray-800">
-          <div className="container mx-auto px-6 text-center">
-            <h3 className="text-4xl font-bold mb-4 text-purple-300">Dare to Dine Dangerously?</h3>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+        {/* What is RecipeWreck? Section - Transformed into Hero Section */}
+        <section 
+          className="w-full py-32 md:py-48 bg-cover bg-center relative text-white"
+          style={{ backgroundImage: "url('/images/Gluttons_Gauntlet_Lasagna_Pizza_Hero.jpg')" }}
+        >
+          <div className="absolute inset-0 bg-black opacity-70"></div> {/* Overlay for text readability */}
+          <div className="container mx-auto px-6 text-center relative z-10">
+            <h3 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-shadow-lg">
+              Dare to Dine Dangerously?
+            </h3>
+            <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto text-shadow-md">
               RecipeWreck uses cutting-edge (and slightly unhinged) AI to generate recipes that laugh in the face of sensible eating. Perfect for your next cheat day, or if you've simply embraced the void.
             </p>
+            {/* Optional: Add a call to action button here if desired */}
           </div>
         </section>
 
