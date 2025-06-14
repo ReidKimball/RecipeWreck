@@ -180,12 +180,12 @@ export default function LandingPage() {
 
   /**
    * Handles the click event for the pre-order button.
-   * Currently, it shows an alert indicating that pre-order functionality is not yet implemented
-   * and captures a PostHog event.
+   * Redirects to the Stripe test payment link for the $50 lifetime access.
+   * Replace the placeholder URL below with your actual link from the Stripe dashboard.
    */
   const handlePreorderClick = () => {
-    alert('Pre-order functionality coming soon! You are a true visionary/masochist.');
     posthog.capture('preorder_cta_clicked');
+    window.location.href = 'https://buy.stripe.com/test_dRm6oH9Uxe4Cc0R004cs802';
   };
 
   return (
