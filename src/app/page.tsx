@@ -1,12 +1,33 @@
+/**
+ * @file src/app/page.tsx
+ * @description The main landing page for RecipeWreck. This page introduces the application,
+ *              showcases mock recipes, includes testimonials, and provides forms for users
+ *              to join a waitlist or pre-order (mock functionality).
+ *              It utilizes client-side interactivity for form submissions and dynamic content.
+ * @requires react - For building the user interface with components, state, and hooks.
+ * @requires next/head - (Legacy) For managing document head elements like title and meta tags. For App Router, Metadata API is preferred.
+ * @requires posthog-js - For product analytics, tracking events like waitlist joins and pre-order clicks.
+ * @requires @/app/components/TestimonialsSection - Internal component for displaying testimonials.
+ * @author Cascade
+ * @date 2025-06-13
+ */
+
 "use client";
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head'; // For older Next.js versions, or use Metadata API for App Router
-import TestimonialsSection from '@/app/components/TestimonialsSection'; // Added import
-import posthog from 'posthog-js'; // Added PostHog import
+import { useState, useEffect } from 'react'; // React hooks for managing component state and side effects.
+import Head from 'next/head'; // (Legacy) For managing document head elements. App Router prefers Metadata API.
+import TestimonialsSection from '@/app/components/TestimonialsSection'; // Component to display user testimonials.
+import posthog from 'posthog-js'; // Client-side library for PostHog product analytics.
 
 // Mockup Recipe Data - Replace with actual pre-generated recipe images and details
 // Helper function to generate stars
+/**
+ * A simple component to display a star rating based on a numeric value.
+ * @component
+ * @param {object} props - The props for the component.
+ * @param {number} props.rating - The rating value (0-5).
+ * @returns {JSX.Element} A div containing star characters.
+ */
 const StarRating = ({ rating }: { rating: number }) => (
   <div className="text-yellow-400 text-lg">
     {'★'.repeat(rating)}{'☆'.repeat(5 - rating)}
@@ -72,12 +93,23 @@ const mockRecipes = [
   }
 ];
 
+/**
+ * The main landing page component for RecipeWreck.
+ * It showcases the product's value proposition, displays mock recipes, testimonials,
+ * and includes forms for waitlist sign-up and mock pre-orders.
+ * This component handles its own state for form inputs, submission status, and dynamic button text.
+ *
+ * @component LandingPage
+ * @componentType Client
+ * @description Renders the entire landing page content with interactive elements.
+ * @returns {JSX.Element} The JSX for the RecipeWreck landing page.
+ */
 export default function LandingPage() {
-  const [waitlistEmail, setWaitlistEmail] = useState('');
-  const [waitlistSubmitted, setWaitlistSubmitted] = useState(false);
-  const [submitButtonText, setSubmitButtonText] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [apiError, setApiError] = useState<string | null>(null);
+  const [waitlistEmail, setWaitlistEmail] = useState(''); // State for the waitlist email input field.
+  const [waitlistSubmitted, setWaitlistSubmitted] = useState(false); // State to track if the waitlist form has been successfully submitted.
+  const [submitButtonText, setSubmitButtonText] = useState(''); // State for the dynamic text of the waitlist submit button.
+  const [isLoading, setIsLoading] = useState(false); // State to manage the loading status of the waitlist form submission.
+  const [apiError, setApiError] = useState<string | null>(null); // State to store and display API error messages from the waitlist submission.
 
   const buttonTextOptions = [
     "Join the Mayhem",
@@ -89,11 +121,23 @@ export default function LandingPage() {
     "Click Here for a Bad Time (The Good Kind)"
   ];
 
+  /**
+   * Effect hook to set a random text for the waitlist submit button on component mount.
+   * This adds a bit of playful randomness to the UI.
+   */
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * buttonTextOptions.length);
     setSubmitButtonText(buttonTextOptions[randomIndex]);
   }, []); // Empty dependency array ensures this runs only on mount
 
+  /**
+   * Handles the submission of the waitlist form.
+   * It prevents the default form submission, validates the email (client-side basic check),
+   * sends a POST request to the `/api/subscribe` endpoint, and updates UI based on the response.
+   * Tracks events using PostHog for form submission, success, and failure.
+   *
+   * @param {React.FormEvent} e - The form submission event.
+   */
   const handleWaitlistSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setApiError(null);
@@ -134,6 +178,11 @@ export default function LandingPage() {
     setIsLoading(false);
   };
 
+  /**
+   * Handles the click event for the pre-order button.
+   * Currently, it shows an alert indicating that pre-order functionality is not yet implemented
+   * and captures a PostHog event.
+   */
   const handlePreorderClick = () => {
     alert('Pre-order functionality coming soon! You are a true visionary/masochist.');
     posthog.capture('preorder_cta_clicked');

@@ -1,9 +1,44 @@
-import MailerLite from '@mailerlite/mailerlite-nodejs';
+/**
+ * @file src/app/api/subscribe/route.ts
+ * @description API Route Handler for subscribing users to the MailerLite waitlist.
+ *              This endpoint receives an email address, validates it, and then uses the MailerLite
+ *              SDK to add the subscriber to a pre-configured group specified by MAILERLITE_GROUP_ID
+ *              in the environment variables.
+ * @requires mailerlite/mailerlite-nodejs - The official MailerLite Node.js SDK.
+ * @requires next/server - For Next.js API route functionalities (Request, Response).
+ * @author Cascade
+ * @date 2025-06-13
+ */
+
+import MailerLite from '@mailerlite/mailerlite-nodejs'; // Official MailerLite Node.js SDK for interacting with their API.
 
 const mailerlite = new MailerLite({ 
   api_key: process.env.MAILERLITE_API_KEY || ''
 });
 
+/**
+ * Handles POST requests to subscribe an email address to the MailerLite waitlist.
+ * It expects a JSON body with an 'email' property.
+ *
+ * @async
+ * @route POST /api/subscribe
+ * @param {Request} request - The incoming Next.js API request object. Expected to contain a JSON body with an 'email' field.
+ * @returns {Promise<Response>} A Next.js Response object.
+ *   - Returns a 200 or 201 status with subscriber data on successful subscription or update.
+ *   - Returns a 400 status if the email is missing, invalid, or improperly formatted.
+ *   - Returns a 500 status if API keys/Group ID are not configured or if an unexpected server error occurs during the MailerLite API call.
+ * @throws Will catch and log errors from MailerLite SDK or other unexpected issues, returning a 500 response.
+ *
+ * @example
+ * // Client-side fetch request:
+ * fetch('/api/subscribe', {
+ *   method: 'POST',
+ *   headers: { 'Content-Type': 'application/json' },
+ *   body: JSON.stringify({ email: 'test@example.com' })
+ * })
+ * .then(res => res.json())
+ * .then(data => console.log(data));
+ */
 export async function POST(request: Request) {
   if (!process.env.MAILERLITE_API_KEY) {
     return new Response(JSON.stringify({ message: 'MailerLite API key not configured.' }), {
