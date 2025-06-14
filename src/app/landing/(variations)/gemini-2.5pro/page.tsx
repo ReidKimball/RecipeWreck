@@ -263,7 +263,7 @@ export default function LandingPage_o3() {
               &copy; {new Date().getFullYear()} RecipeWreck. Consult a physician before use. Or don't, we're a website, not your mom. All recipes generated for satirical purposes only. Please don't actually eat this stuff daily. Or do. Free will, baby.
             </p>
             <p className="text-xs text-gray-600 mt-2">
-              {`// TODO: Add actual links if needed (Privacy, Terms)`}
+              {/* {`// TODO: Add actual links if needed (Privacy, Terms)`} */}
             </p>
           </div>
         </footer>

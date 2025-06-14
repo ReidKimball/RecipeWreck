@@ -72,10 +72,12 @@ const mockRecipes = [
   }
 ];
 
-export default function LandingPage_o3() {
+export default function LandingPage() {
   const [waitlistEmail, setWaitlistEmail] = useState('');
   const [waitlistSubmitted, setWaitlistSubmitted] = useState(false);
   const [submitButtonText, setSubmitButtonText] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [apiError, setApiError] = useState<string | null>(null);
 
   const buttonTextOptions = [
     "Join the Mayhem",
@@ -92,14 +94,44 @@ export default function LandingPage_o3() {
     setSubmitButtonText(buttonTextOptions[randomIndex]);
   }, []); // Empty dependency array ensures this runs only on mount
 
-  const handleWaitlistSubmit = (e: React.FormEvent) => {
+  const handleWaitlistSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    posthog.capture('waitlist_joined', { email: waitlistEmail });
-    if (waitlistEmail && waitlistEmail.includes('@')) { // Basic validation
-      setWaitlistSubmitted(true);
-    } else {
-      alert('Please enter a valid email, you culinary daredevil!');
+    setApiError(null);
+
+    if (!waitlistEmail || !waitlistEmail.includes('@')) {
+      setApiError('Please enter a valid email, you culinary daredevil!');
+      // alert('Please enter a valid email, you culinary daredevil!'); // Replaced alert with state
+      return;
     }
+
+    setIsLoading(true);
+    posthog.capture('waitlist_form_submitted', { email: waitlistEmail });
+
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: waitlistEmail }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setWaitlistSubmitted(true);
+        posthog.capture('waitlist_join_success', { email: waitlistEmail, api_response: result });
+      } else {
+        setApiError(result.message || 'An unexpected error occurred. Please try again.');
+        posthog.capture('waitlist_join_failed', { email: waitlistEmail, error: result.message, status_code: response.status });
+      }
+    } catch (error) {
+      console.error('Waitlist submission error:', error);
+      setApiError('Failed to connect. Please check your internet connection and try again.');
+      posthog.capture('waitlist_join_exception', { email: waitlistEmail, error: (error as Error).message });
+    }
+
+    setIsLoading(false);
   };
 
   const handlePreorderClick = () => {
@@ -222,14 +254,19 @@ export default function LandingPage_o3() {
                   onChange={(e) => setWaitlistEmail(e.target.value)}
                   placeholder="your.email@example.com (if you dare)"
                   required
-                  className="flex-grow px-6 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-purple-500 outline-none placeholder-gray-500"
+                  disabled={isLoading}
+                  className="flex-grow px-6 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-purple-500 outline-none placeholder-gray-500 disabled:opacity-50"
                 />
                 <button
                   type="submit"
-                  className="px-8 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg text-lg font-semibold transition-colors"
+                  disabled={isLoading}
+                  className="px-8 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg text-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {submitButtonText}
+                  {isLoading ? 'Submitting...' : submitButtonText}
                 </button>
+                {apiError && (
+                  <p className="text-red-400 text-sm mt-2">{apiError}</p>
+                )}
               </form>
             ) : (
               <p className="text-xl text-green-400 font-semibold">
@@ -263,7 +300,7 @@ export default function LandingPage_o3() {
               &copy; {new Date().getFullYear()} RecipeWreck. Consult a physician before use. Or don't, we're a website, not your mom. All recipes generated for satirical purposes only. Please don't actually eat this stuff daily. Or do. Free will, baby.
             </p>
             <p className="text-xs text-gray-600 mt-2">
-              {`// TODO: Add actual links if needed (Privacy, Terms)`}
+              {/* {`// TODO: Add actual links if needed (Privacy, Terms)`} */}
             </p>
           </div>
         </footer>

@@ -1,5 +1,5 @@
 {
-  "name": "template-app",
+  "name": "recipe-wreck",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.14.0",
     "@fontsource/roboto": "^5.2.6",
     "@google/genai": "^1.4.0",
+    "@mailerlite/mailerlite-nodejs": "^1.4.0",
     "@modelcontextprotocol/sdk": "^1.12.1",
     "@mui/icons-material": "^7.1.1",
     "@mui/material": "^7.1.1",
