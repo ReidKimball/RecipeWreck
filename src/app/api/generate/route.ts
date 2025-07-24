@@ -98,23 +98,51 @@ export async function POST(req: NextRequest) {
     const textModelName = process.env.GENAI_TEXT_MODEL || "gemini-1.5-flash-latest";
     // We could set responseMimeType here but will inline below. Removed unused var to avoid lint.
 
-    const textPrompt = `Generate an OUTRAGEOUSLY unhealthy recipe in the following format:\n\nTitle: <creative title>\n\nIngredients:\n- <ingredient 1>\n- <ingredient 2>\n\nSteps:\n1. <step 1>\n2. <step 2>\n\nPrompt subject: ${prompt}`;
+    const textPrompt = `Generate an OUTRAGEOUSLY unhealthy recipe in the following format:\n\n
+                        Title: <creative title>\n\n
+                        Ingredients:\n
+                        - <ingredient 1>\n
+                        - <ingredient 2>\n\n
+                        Steps:\n
+                        1. <step 1>\n
+                        2. <step 2>\n\n
+                        Prompt subject: ${prompt}`;
     console.log("Text prompt:", textPrompt);
     const requestContents = [{ role: 'user', parts: [{ text: textPrompt }] }];
 
-    // Disable thinking by setting thinkingBudget: 0 (allowed for 2.5 Flash)
+    // Disable thinking by setting thinkingBudget: 0 (allowed for 2.5 Flash), -1 = dynmaic thinking budget
     const textRes = await ai.models.generateContent({
       model: textModelName,
       contents: requestContents,
       config: {
-        thinkingConfig: { thinkingBudget: 0 },
+        thinkingConfig: { thinkingBudget: -1, includeThoughts: true },
       },
     });
-    
+
     // Accessing text as a property, or via candidates as a fallback
-    console.log('Text API Response:', JSON.stringify(textRes, null, 2)); // Log textRes
-    const rawText = textRes.text ?? textRes.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+    console.log("Text API Response:", JSON.stringify(textRes, null, 2)); // Log textRes
+
+    let rawText = "";
+    if (textRes.candidates?.[0]?.content?.parts) {
+      for (const part of textRes.candidates[0].content.parts) {
+        if (part.thought) {
+          console.log("Gemini Thought Summary:", part.text);
+        } else if (part.text) {
+          rawText += part.text;
+        }
+      }
+    }
+
+    // Fallback for simpler responses
+    if (!rawText) {
+      rawText = textRes.text ?? "";
+    }
+
+    console.log(`rawText is: ${rawText}`);
     const { title, ingredients, steps } = parseRecipe(rawText);
+    console.log(`Title is: ${title}`)
+    console.log(`Ingredients is: ${ingredients}`)
+    console.log(`Steps is: ${steps}`)
 
     // Image generation
     const imageModelName = process.env.GENAI_IMAGE_MODEL || "imagen-3.0-generate-002"; // Changed from imagen-3 due to 404 error on v1beta

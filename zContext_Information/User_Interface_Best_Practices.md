@@ -30,6 +30,15 @@ Font Type: Choose clear and legible typefaces. While sans-serif fonts are often 
 
 Font Weight and Style: Use bold and italics strategically to emphasize key information and create a clear visual hierarchy.
 
+### Application Typographic Scale
+
+Based on the AI chat interface (`AskKay.jsx`), the following mobile-first typographic scale is in use:
+
+- **Body Text**: `1.125rem` (18px), as established by the `prose-lg` Tailwind CSS class for AI responses.
+- **Primary Headings (e.g., Recipe Titles)**: Should be significantly larger, such as `1.5rem` (24px) or MUI's `h5` variant.
+- **Secondary Headings (e.g., Section Titles)**: Should sit between body text and primary headings, around `1.25rem` (20px).
+- **Font Family**: The default is Tailwind's standard sans-serif stack (`ui-sans-serif, system-ui`, etc.).
+
 Colors and Contrast
 
 Thoughtful use of color and contrast improves readability and directs user attention.
