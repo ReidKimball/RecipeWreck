@@ -1,82 +1,53 @@
-# Next.js Project Boilerplate
+# RecipeWreck
 
-This is a boilerplate project for creating new web applications using Next.js and a curated set of modern technologies. It's designed to get you up and running quickly with a solid foundation.
+**Tagline**: "Wreck your health, one meal at a time"
 
-## Included Technologies
+RecipeWreck is an absurdist AI-powered application that generates the most disgusting, unhealthy, and insane recipes imaginable. It combines humor with cutting-edge AI to create outrageous culinary abominations that users can share for entertainment.
 
-This boilerplate comes pre-configured with the following technologies:
+## How It Works
+
+At its core, RecipeWreck uses generative AI to bring its hilariously awful creations to life. The process is simple:
+
+1.  A user provides a prompt or an idea for a recipe.
+2.  Our backend, powered by the **Google Gemini API**, processes the prompt to generate a completely unique and absurd recipe, including a title, ingredients, and step-by-step instructions.
+3.  Simultaneously, an AI image generation model creates a custom, high-resolution image to visually represent the culinary disaster.
+4.  The final result is presented on a beautifully designed recipe card, ready for the user to save, share, and horrify their friends with.
+
+## Technology Stack
+
+RecipeWreck is built with a modern, robust, and scalable technology stack to ensure a high-quality user experience and reliable performance.
 
 *   **Framework:** [Next.js](https://nextjs.org/) (v15+ with App Router)
 *   **Language:** [TypeScript](https://www.typescriptlang.org/)
-*   **Styling:**
-    *   [Tailwind CSS](https://tailwindcss.com/) (v4) - Utility-first CSS framework.
-    *   [Material UI (MUI)](https://mui.com/) - Comprehensive React component library.
-*   **State Management/UI:** [React](https://reactjs.org/) (v19)
-*   **Linting/Formatting:** [ESLint](https://eslint.org/) (configured for Next.js)
-*   **Fonts:** [Geist](https://vercel.com/font) (via `next/font`)
-*   **Potential Integrations (dependencies included, setup required):
-    *   [Firebase](https://firebase.google.com/) - Backend services (Auth, Firestore, Storage, etc.).
-    *   [Google Generative AI](https://ai.google.dev/) - For integrating AI capabilities.
-    *   [Stripe](https://stripe.com/) - For payment processing.
-    *   [MongoDB](https://www.mongodb.com/) / [Mongoose](https://mongoosejs.com/) - NoSQL database interaction.
-    *   [Lucide React](https://lucide.dev/) - Icon library.
-    *   [Zod](https://zod.dev/) - TypeScript-first schema validation.
-    *   [Day.js](https://day.js.org/) - Date and time utility.
+*   **UI Library:** [React](https://reactjs.org/) (v19)
+*   **Styling:** A combination of [Tailwind CSS](https://tailwindcss.com/) (v4) for utility-first styling and [Material UI (MUI)](https://mui.com/) for a comprehensive component library.
+*   **AI Integration:** [Google Generative AI](https://ai.google.dev/) (Gemini and Imagen models) for recipe text and image generation.
+*   **Database:** [MongoDB](https://www.mongodb.com/) with [Mongoose](https://mongoosejs.com/) for flexible and scalable data storage.
+*   **Schema Validation:** [Zod](https://zod.dev/) for ensuring type-safe data handling between the client and server.
+*   **Deployment:** Google Cloud Run
 
 ## Getting Started
 
-Follow these steps to set up and run a new project based on this boilerplate:
+Follow these steps to set up and run the project locally:
 
-1.  **Clone/Copy the Boilerplate:**
-    Start by cloning this repository or copying its files to your new project directory.
+1.  **Clone the Repository:**
+    ```bash
+    git clone <repository-url>
+    ```
 
 2.  **Install Dependencies:**
     Navigate to your project's root directory in the terminal and run:
     ```bash
     npm install
     ```
-    This will install all the necessary packages defined in `package.json`.
 
 3.  **Set Up Environment Variables:**
-    This project uses environment variables for configuration (e.g., API keys, database connection strings). You'll need to create a `.env` file for your local development.
-
-    *   Copy the example environment file:
-        ```bash
-        cp .env.example .env
-        ```
-    *   Open the newly created `.env` file in your code editor.
-    *   Fill in the placeholder values with your actual credentials and configuration details for services like Firebase, Google AI, Stripe, and MongoDB. **Do not commit your `.env` file to version control.**
+    Create a `.env.local` file in the root directory by copying the `.env.example` file. You will need to add your own API keys for Google GenAI and your MongoDB connection string.
 
 4.  **Run the Development Server:**
-    Once dependencies are installed and your `.env` file is configured, you can start the Next.js development server:
     ```bash
     npm run dev
     ```
-    This command will typically start the server on `http://localhost:3000`.
 
-5.  **Open in Browser:**
-    Open [http://localhost:3000](http://localhost:3000) in your web browser to see your application running.
-
-## Development
-
-*   Modify pages by editing files in the `src/app` directory (e.g., `src/app/page.tsx` for the homepage).
-*   Create reusable components in the `src/components` directory (you might need to create this directory if it doesn't exist).
-*   Tailwind CSS utility classes can be used directly in your JSX/TSX components.
-*   MUI components can be imported from `@mui/material` and used throughout your application. The theme is configured in `src/app/ThemeRegistry.tsx`.
-
-## Available Scripts
-
-In the project directory, you can run:
-
-*   `npm run dev`: Runs the app in development mode.
-*   `npm run build`: Builds the app for production.
-*   `npm run start`: Starts a production server (after building).
-*   `npm run lint`: Lints the project files using ESLint.
-
-## Learn More
-
-*   [Next.js Documentation](https://nextjs.org/docs)
-*   [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-*   [Material UI Documentation](https://mui.com/material-ui/getting-started/)
-
-Happy coding!
+5.  **Open the Application:**
+    Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
