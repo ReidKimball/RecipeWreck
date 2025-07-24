@@ -87,12 +87,12 @@ export default function RecipeCard({ recipe }: Props) {
           ))}
         </ol>
       </section>
-      <button
+      {/* <button
         onClick={handleCopy}
         className="w-full py-2 bg-purple-600 text-white rounded-md"
       >
         Copy link
-      </button>
+      </button> */}
     </article>
   );
 }
