@@ -152,7 +152,7 @@ export default function LandingPage_o3() {
         {/* Call to Action - Pre-order Section */}
         <section id="preorder-section" className="w-full py-16 md:py-24 bg-gray-900">
           <div className="container mx-auto px-6 text-center">
-            <h3 className="text-4xl font-bold mb-4 text-yellow-400">Fund the Absurdity: <strike>$75/mo</strike> $50 Lifetime Access!</h3>
+            <h3 className="text-4xl font-bold mb-4 text-yellow-400">Fund the Absurdity: <s>$75/mo</s> $50 Lifetime Access!</h3>
             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
               Help us build this beautiful monstrosity. For a <strong className='text-yellow-300'>one-time $50</strong>, get lifetime access to culinary chaos. <br />
               <span className="text-md text-gray-400">Disclaimer: 'Lifetime' is relative, especially with these recipes. App is <strong className='text-red-400'>NOT ready yet</strong>. This is a pre-order to fund development. No refunds if you meet your maker before launch (or if the app never launches, lol, jk... mostly).</span>

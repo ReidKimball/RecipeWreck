@@ -18,6 +18,8 @@ import { useState, useEffect } from 'react'; // React hooks for managing compone
 import Head from 'next/head'; // (Legacy) For managing document head elements. App Router prefers Metadata API.
 import TestimonialsSection from '@/app/components/TestimonialsSection'; // Component to display user testimonials.
 import posthog from 'posthog-js'; // Client-side library for PostHog product analytics.
+import Button from '@mui/material/Button';
+import Link from 'next/link'; // For client-side navigation.
 
 // Mockup Recipe Data - Replace with actual pre-generated recipe images and details
 // Helper function to generate stars
@@ -294,6 +296,27 @@ export default function LandingPage() {
         </section>
 
         <TestimonialsSection />
+
+        {/* Call to Action - Generator Button */}
+        <section className="w-full pb-16 md:pb-24 text-center bg-gray-900">
+          <Link href="/recipe-generator" passHref>
+            <Button
+              variant="contained"
+              color="secondary"
+              sx={{
+                padding: '1.25rem 3rem', // Equivalent to py-5 px-12
+                fontSize: '1.25rem', // Equivalent to text-4xl
+                fontWeight: 'bold',
+                transition: 'transform 0.2s ease-in-out',
+                '&:hover': {
+                  transform: 'scale(1.05)',
+                },
+              }}
+            >
+              Create Your Own Abomination
+            </Button>
+          </Link>
+        </section>
 
         {/* Call to Action - Waitlist Section */}
         <section id="waitlist-section" className="w-full py-16 md:py-24 bg-gray-800">
