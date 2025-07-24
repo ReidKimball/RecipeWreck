@@ -22,7 +22,6 @@ RecipeWreck is built with a modern, robust, and scalable technology stack to ens
 *   **UI Library:** [React](https://reactjs.org/) (v19)
 *   **Styling:** A combination of [Tailwind CSS](https://tailwindcss.com/) (v4) for utility-first styling and [Material UI (MUI)](https://mui.com/) for a comprehensive component library.
 *   **AI Integration:** [Google Generative AI](https://ai.google.dev/) (Gemini and Imagen models) for recipe text and image generation.
-*   **Database:** [MongoDB](https://www.mongodb.com/) with [Mongoose](https://mongoosejs.com/) for flexible and scalable data storage.
 *   **Schema Validation:** [Zod](https://zod.dev/) for ensuring type-safe data handling between the client and server.
 *   **Deployment:** Google Cloud Run
 
